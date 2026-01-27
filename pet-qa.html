@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Q&A - 宠物家</title>
   <style>
     * {
@@ -14,6 +14,7 @@
 
     body {
       background: #f5f5f5;
+      min-height: 100vh;
     }
 
     .container {
@@ -22,6 +23,7 @@
       background: #fff;
       min-height: 100vh;
       border: 1px solid #ddd;
+      padding-bottom: 20px; /* 移动端底部留白 */
     }
 
     /* 顶部 */
@@ -44,13 +46,40 @@
     /* 主体 */
     .main {
       display: flex;
-      height: calc(100vh - 58px);
+      min-height: calc(100vh - 58px); /* 替换固定height为min-height，适配移动端 */
+      flex-wrap: wrap; /* 移动端自动换行 */
     }
 
     /* 左侧分类 */
     .sidebar {
       width: 90px;
       border-right: 2px solid #333;
+      min-height: calc(100vh - 58px); /* 适配移动端高度 */
+    }
+
+    /* 移动端适配：屏幕小于750px时调整侧边栏 */
+    @media (max-width: 750px) {
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #333;
+        min-height: auto;
+        display: flex;
+        overflow-x: auto;
+      }
+      .menu-item {
+        flex: 0 0 auto;
+        width: 80px;
+        border-bottom: none;
+        border-right: 1px solid #333;
+      }
+      .main {
+        min-height: auto;
+      }
+      .content {
+        width: 100%;
+        padding: 10px;
+      }
     }
 
     .menu-item {
