@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://castellanfrancenco-gif.github.io/pet-qa/pet-qa.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&amp;A - 宠物家</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei";
+    }
+
+    body {
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      border: 1px solid #ddd;
+    }
+
+    /* 顶部 */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      border-bottom: 2px solid #333;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .logo {
+      color: #ff5a3c;
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    /* 主体 */
+    .main {
+      display: flex;
+      height: calc(100vh - 58px);
+    }
+
+    /* 左侧分类 */
+    .sidebar {
+      width: 100px;
+      border-right: 2px solid #333;
+    }
+
+    .menu-item {
+      padding: 14px 6px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .menu-item.active {
+      background: #fff;
+      font-weight: 600;
+    }
+
+    /* 右侧内容 */
+    .content {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .content-title {
+      border: 2px solid #333;
+      padding: 8px 0;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* 搜索框 */
+    .search-box {
+      margin-bottom: 14px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 14px;
+      border: 1px solid #999;
+      border-radius: 4px;
+    }
+
+    .qa-item {
+      margin-bottom: 16px;
+    }
+
+    .question {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .answer {
+      font-size: 14px;
+      color: #333;
+    }
+    .menu-item.sub {
+font-size: 10px;
+padding: 10px 6px;
+color: #555;
+}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div>Q&amp;A</div>
+    <div class="logo">pet'em 宠物家</div>
+  </div>
+
+  <div class="main">
+    <div class="sidebar" id="menu"><div class="menu-item">能量值</div><div class="menu-item sub">服务分</div><div class="menu-item sub">转化分</div><div class="menu-item sub">出勤分</div><div class="menu-item sub">附加分</div><div class="menu-item sub">任务分</div><div class="menu-item active">订单分配</div><div class="menu-item">Prime会员卡</div><div class="menu-item">服务年卡</div></div>
+
+    <div class="content">
+      <div class="content-title" id="title">订单分配</div>
+
+      <div class="search-box">
+        <input id="searchInput" placeholder="搜索问题关键词">
+      </div>
+
+      <div id="qaList"><div class="qa-item">
+        <div class="question">1、A和B美容师能量值都是同分且是最高时，订单会怎么分配？</div>
+        <div class="answer">回答：在美容师A和B能量值相同且都是最高时，系统会根据 <strong>“在职年限”</strong> 进行排序，在职时间越长的美容师将优先获得优质顾客的分配权。</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const qaData = {
+    "能量值": [
+      { q: "能量值都是按照上个月的来算的吗？就比如1月的能量值是在2月显示吗？", a: "能量值不是都按上个月算的，有些是按月更新的，<strong>有些是实时滚动的</strong>。比如：任务分基本是按照每个月来更新，但是如护理记录、好评等是按照<strong>最近100单</strong>的数据实时更新滚动，意味着能量值及排名都是不断变化的，所以现在的表现会持续影响后面的进单顺序。具体可在美容师端能量值页面查询。" },
+      { q: "为什么我今天没扣分，但是“今日能量值-10”？", a: "并非实际扣分，而是今日相比于昨天低了10分。<br><img src='../images/pic2-subtractpowerenerge.png' alt='测试' width='200' style='display: block; margin: 10px auto;'"}
+    ],
+    "订单分配": [
+      { q: "A和B美容师能量值都是同分且是最高时，订单会怎么分配？",a:"在美容师A和B能量值相同且都是最高时，系统会根据 <strong>“在职年限”</strong> 进行排序，在职时间越长的美容师将优先获得优质顾客的分配权。"}
+    ],
+    "服务分": [
+      { q:"原来的服务分是取消了吗？",a:"是的。目前的服务分是由护理记录+主动好评+复购率来构成的。"},
+      { q:"APP/护理记录差评撤销（例有五星划错的），被扣的服务分会恢复吗？",a:"关于差评扣分返还的处理规则：<p>1、<strong>护理记录</strong>产生的差评，一经扣除能量值，即使后续撤销，也不予恢复。<p>2、<strong>APP服务差评</strong>申诉，结果将直接影响能量值：<p>①若申诉成功且判定责任为非美容师原因，被扣除的能量值予以返还；<p>②若申诉成功且判定责任为美容师原因，被扣除的能量值不予返还。"}
+    ],
+    "任务分": [],
+    "转化分": [
+      { q:"关于特色升级，由普通服务“退单重下”的特色升级场景，是否加分？",a:"用户退单重新下特色订单，按照“用户自主下特色单+0.2分”计算。"}
+    ],
+    "出勤分": [
+      { q: "请年假会影响出勤分吗？", a: "年假会扣出勤分。目前出勤统计包括=工作+伤假+业务培训+学习美容。" }
+    ],
+    "附加分": [],
+
+"Prime会员卡": [
+  {
+    q: "为什么会员卡里的驱虫券用不了？",
+    a: "<p>1、检查会员卡是否绑定了宠物，检查下单宠物是否为会员卡绑定的宠物；<p>2、检查是否有1元换购驱虫券；<p>3、下单时是否有添加驱虫单项。"
+  }
+],
+
+"服务年卡": [
+  {
+    q: "为什么服务年卡下不了订单？",
+    a: "根据下单页面具体提示进行操作。若无提示，可以更换app或小程序进行下单。<br><img src='../images/pic-test1.png' alt='测试' width='200' style='display: block; margin: 10px auto;'>"
+  }
+]
+    
+  };
+
+  let currentCategory = "订单分配";
+
+  const menu = document.getElementById("menu");
+  const title = document.getElementById("title");
+  const qaList = document.getElementById("qaList");
+  const searchInput = document.getElementById("searchInput");
+
+ const energySubMenus = ["服务分", "转化分", "出勤分", "附加分", "任务分"];
+
+function renderMenu() {
+  menu.innerHTML = "";
+
+  Object.keys(qaData).forEach(key => {
+    // 能量值父级
+    if (key === "能量值") {
+      const parent = document.createElement("div");
+      parent.className = "menu-item" + (key === currentCategory ? " active" : "");
+      parent.innerText = "能量值";
+      parent.onclick = () => switchCategory("能量值");
+      menu.appendChild(parent);
+
+      // 二级菜单
+      energySubMenus.forEach(subKey => {
+        if (!qaData[subKey]) return;
+
+        const sub = document.createElement("div");
+        sub.className =
+          "menu-item sub" + (subKey === currentCategory ? " active" : "");
+        sub.innerText = subKey;
+        sub.onclick = () => switchCategory(subKey);
+        menu.appendChild(sub);
+      });
+
+      return;
+    }
+
+    // 跳过已经作为二级菜单的项
+    if (energySubMenus.includes(key)) return;
+
+    // 普通一级菜单
+    const div = document.createElement("div");
+    div.className = "menu-item" + (key === currentCategory ? " active" : "");
+    div.innerText = key;
+    div.onclick = () => switchCategory(key);
+    menu.appendChild(div);
+  });
+}
+
+  function switchCategory(category) {
+    currentCategory = category;
+    document.querySelectorAll(".menu-item").forEach(item => {
+      item.classList.toggle("active", item.innerText === category);
+    });
+    searchInput.value = "";
+    renderContent();
+  }
+
+  function renderContent() {
+    title.innerText = currentCategory;
+    qaList.innerHTML = "";
+
+    const keyword = searchInput.value.trim();
+    const list = qaData[currentCategory].filter(item =>
+      item.q.includes(keyword)
+    );
+
+    list.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "qa-item";
+      div.innerHTML = `
+        <div class="question">${index + 1}、${item.q}</div>
+        <div class="answer">回答：${item.a}</div>
+      `;
+      qaList.appendChild(div);
+    });
+  }
+
+  searchInput.addEventListener("input", renderContent);
+
+  renderMenu();
+  renderContent();
+</script>
+
+
+
+
+
+</body></html>
